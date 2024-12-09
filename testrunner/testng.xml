@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="Sanity Suite">
+        <classes>
+            <class name="testcase.LoginPageTest"/>
+            <class name="testcase.IdTypeTest"/>
+            <class name="testcase.RegistrantTagsTest"/>
+            <class name="testcase.GenderTypesTest"/>
+            <class name="testcase.RelationshipTest"/>
+            <class name="testcase.GroupTypeTest"/>
+            <class name="testcase.GroupMembershipKindTest"/>
+            <class name="testcase.RegionTest"/>
+            <class name="testcase.GroupTest"/>
+            <!-- Uncomment when IndividualTest is ready -->
+            <!-- <class name="testcase.IndividualTest"/> -->
+        </classes>
+    </test>
+</suite>

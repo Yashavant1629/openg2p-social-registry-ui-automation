@@ -1,0 +1,15 @@
+{
+  "email": ["yashavant@openg2p.org","yash@openg2p.org"],
+  "password": "pass",
+  "idType": ["AutoID1","AutoId2"],
+  "registrantTag": "AutoTestTag",
+  "gender": "AutoTestGender",
+  "relation": "AutoTestRelation",
+  "groupType": "AutoTestKind",
+  "groupMembershipKind": "AutoTestMemberKind",
+  "region": "AutoTestRegion",
+  "groupName": ["AutoTestGroup","AutoTestDummy"],
+  "tags": "AutoTestTag",
+  "address": "Bangalore",
+  "groupNameUpdated": "AutoTestGroupUpdated"
+}
