@@ -9,6 +9,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -21,6 +23,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class DriverCreator {
+    private static final Logger logger = LoggerFactory.getLogger(DriverCreator.class);
     public static WebDriver driver;
     public static Properties properties = new Properties();
     public static Properties locators = new Properties();
@@ -37,6 +40,7 @@ public class DriverCreator {
 
     @BeforeMethod
     public void setup() throws IOException {
+        logger.info("setup action been intiated");
         if (driver == null) {
             fileReader1 = new FileReader("testconfigs/configfile/config.properties");
             fileReader2 = new FileReader("src/main/resources/configfiles/locators.properties");
@@ -68,9 +72,9 @@ public class DriverCreator {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver(options);
         }
-
         driver.get(properties.getProperty("openg2purl"));
         driver.manage().window().maximize();
+        logger.info("driver has been created successfully");
     }
 
     @AfterMethod

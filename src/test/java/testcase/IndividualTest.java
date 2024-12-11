@@ -15,34 +15,38 @@ public class IndividualTest extends BaseLogin {
     @Test
     public static void individualCreation() throws IOException, InterruptedException {
         login();
+        String familyName = testData.getFamilyName();
+        String givenName = testData.getGivenName();
+        String additionalName = testData.getAdditionalName();
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
         Commons.click(driver, By.xpath(locators.getProperty("new_button")));
-        Commons.enter(driver, By.id(locators.getProperty("family_name")), "Auto");
-        Commons.enter(driver, By.id(locators.getProperty("given_name")), "Test");
-        Commons.enter(driver, By.id(locators.getProperty("additional_name")), "Individual");
-        Commons.dropDownByValue(driver, By.id(locators.getProperty("tags")), "AutoTestTag");
-        Commons.enter(driver, By.id(locators.getProperty("address")), "Bangalore");
-        Commons.enter(driver, By.id(locators.getProperty("email")), "autotestuser@gmail.com");
-        Commons.dropDownByValue(driver, By.id(locators.getProperty("district_dropdown")),"AutoTestDistrict");
-        Commons.dropDownByValue(driver, By.id(locators.getProperty("region_dropdown")),"AutoTestRegion");
-        Commons.enter(driver,By.id(locators.getProperty("birth_place")),"Bangalore");
-        Commons.enter(driver,By.id(locators.getProperty("date_of_birth")),"16/06/2000");
-        Commons.enter(driver,By.id(locators.getProperty("civil_status")),"single");
-        Commons.enter(driver,By.id(locators.getProperty("occupation")),"Software Engineer");
-        Commons.enter(driver,By.id(locators.getProperty("income")),"1000000");
-        Commons.dropDownByValue(driver,By.id(locators.getProperty("gender_dropdown")),"autotestgender");
+        Commons.enter(driver, By.id(locators.getProperty("family_name")), familyName);
+        Commons.enter(driver, By.id(locators.getProperty("given_name")), givenName);
+        Commons.enter(driver, By.id(locators.getProperty("additional_name")), additionalName);
+        Commons.dropDownByValue(driver, By.id(locators.getProperty("tags")), testData.getTags());
+        Commons.enter(driver, By.id(locators.getProperty("address")), testData.getAddress());
+        Commons.enter(driver, By.id(locators.getProperty("email")), testData.getIndividualEmail());
+        Commons.dropDownByValue(driver, By.id(locators.getProperty("district_dropdown")),testData.getDistrict());
+        Commons.dropDownByValue(driver, By.id(locators.getProperty("region_dropdown")), testData.getRegion());
+        Commons.enter(driver,By.id(locators.getProperty("birth_place")), testData.getAddress());
+        Commons.enter(driver,By.id(locators.getProperty("date_of_birth")),testData.getDOB());
+        Commons.enter(driver,By.id(locators.getProperty("civil_status")), testData.getCivilStatus());
+        Commons.enter(driver,By.id(locators.getProperty("occupation")),testData.getOccupation());
+        Commons.enter(driver,By.id(locators.getProperty("income")),testData.getIncome());
+        Commons.dropDownByValue(driver,By.id(locators.getProperty("gender_dropdown")), testData.getGender());
 //        Commons.click(driver, By.xpath(locators.getProperty("add_a_line")));
 //        Commons.enter(driver, By.xpath(locators.getProperty("phone_number")),"");
 //        Commons.click(driver, By.xpath(locators.getProperty("save&close")));
         Commons.click(driver,By.xpath(locators.getProperty("save")));
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
-        String familyName = "Auto";
-        String firstName = "Test";
-        String additionalName = "Individual";
-        List<String> individualName = Arrays.asList(familyName,firstName+" "+additionalName);
+        String familyname = "[Auto";
+        String givenname = "Test";
+        String additionalname = "Individual]";
+        List<String> individualName = Arrays.asList(familyname,givenname+" "+additionalname);
         String tableXPath = "//table[@class='o_list_table table table-sm table-hover position-relative mb-0 o_list_table_ungrouped table-striped']";
         Thread.sleep(3000);
         boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName.toString());
+        System.out.println(entryFound);
         Assert.assertTrue(entryFound, "Expected entry with text '" + individualName + "' not found");
     }
 

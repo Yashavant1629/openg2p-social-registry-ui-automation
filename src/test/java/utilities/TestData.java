@@ -19,7 +19,16 @@ public class TestData {
     private String tags;
     public String groupNameUpdated;
 
+    public String familyName;
+    public  String givenName;
+    public String additionalName;
+    private String individualEmail;
+    private String dob;
+    private String civilStatus;
+    private String occupation;
+    private String income;
     private String address;
+    private String district;
 
     public String getRegion() {
 
@@ -129,5 +138,36 @@ public class TestData {
     }
     public String getUpdatedgroupname() {
         return groupNameUpdated;
+    }
+    public String getFamilyName() {
+        return familyName;
+    }
+    public String getGivenName() {
+        return givenName;
+    }
+
+    public String getAdditionalName() {
+        return additionalName;
+    }
+
+    public String getDOB() {
+        return dob;
+    }
+
+    public String getIndividualEmail() {
+        return individualEmail;
+    }
+    public String getCivilStatus(){
+        return civilStatus;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+    public String getIncome(){
+        return income;
+    }
+    public String getDistrict(){
+        return district;
     }
 }

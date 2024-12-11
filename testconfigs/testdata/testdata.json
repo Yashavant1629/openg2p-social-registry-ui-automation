@@ -11,5 +11,14 @@
   "groupName": ["AutoTestGroup","AutoTestDummy"],
   "tags": "AutoTestTag",
   "address": "Bangalore",
-  "groupNameUpdated": "AutoTestGroupUpdated"
+  "groupNameUpdated": "AutoTestGroupUpdated",
+  "familyName":"Auto",
+  "givenName": "Test",
+  "additionalName": "Individual",
+  "individualEmail": "testindividual@gmail.com",
+  "dob": "06/16/2000",
+  "civilStatus": "Citizen",
+  "occupation": "Software Engineer",
+  "income": "1000000",
+  "district": "AutoTestDistrict"
 }
