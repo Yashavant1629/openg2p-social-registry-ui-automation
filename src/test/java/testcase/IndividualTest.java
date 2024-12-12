@@ -39,12 +39,12 @@ public class IndividualTest extends BaseLogin {
 //        Commons.click(driver, By.xpath(locators.getProperty("save&close")));
         Commons.click(driver,By.xpath(locators.getProperty("save")));
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
-        String familyname = "[Auto";
+        String familyname = "Auto";
         String givenname = "Test";
-        String additionalname = "Individual]";
+        String additionalname = "Individual";
         List<String> individualName = Arrays.asList(familyname,givenname+" "+additionalname);
         String tableXPath = "//table[@class='o_list_table table table-sm table-hover position-relative mb-0 o_list_table_ungrouped table-striped']";
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName.toString());
         System.out.println(entryFound);
         Assert.assertTrue(entryFound, "Expected entry with text '" + individualName + "' not found");
@@ -54,6 +54,13 @@ public class IndividualTest extends BaseLogin {
     public static void individualUpdate() throws IOException, InterruptedException {
         login();
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
+        String familyname = "Auto";
+        String givenname = "Test";
+        String additionalname = "Individual";
+        List<String> individualName = Arrays.asList(familyname,givenname+" "+additionalname);
+        String tableXPath = "//table[@class='o_list_table table table-sm table-hover position-relative mb-0 o_list_table_ungrouped table-striped']";
+//        Thread.sleep(3000);
+        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName.toString())
 
     }
 }
