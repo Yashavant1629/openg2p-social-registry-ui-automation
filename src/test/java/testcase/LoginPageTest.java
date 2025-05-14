@@ -16,11 +16,12 @@ import java.io.IOException;
 
 import static base.DriverCreator.driver;
 
-public class LoginPageTest extends DriverCreator {
+public class LoginPageTest extends BaseLogin {
 
 
     @Test(priority = 1)
-    public void resetPassword() throws InterruptedException {
+    void resetPassword() throws InterruptedException, IOException {
+        loginPage();
         for (String email : testData.getEmail()) {
             Commons.click(driver, By.linkText(locators.getProperty("reset_link")));
             Commons.enter(driver, By.xpath(locators.getProperty("reset_email_field")), email);
@@ -31,7 +32,7 @@ public class LoginPageTest extends DriverCreator {
                 Assert.assertEquals(successMessage, "Password reset instructions sent to your email");
             } else if (isElementPresent(By.cssSelector(locators.getProperty("reset_password_error_message")))) {
                 String errorMessage = driver.findElement(By.cssSelector(locators.getProperty("reset_password_error_message"))).getText();
-                Assert.assertEquals(errorMessage, "No account found for this login");
+                Assert.assertEquals(errorMessage, "Incorrect email. Please enter the registered email address.");
             } else {
                 Assert.fail("Neither success nor error message was found after attempting to reset password.");
             }
@@ -41,7 +42,8 @@ public class LoginPageTest extends DriverCreator {
 
 
     @Test(priority = 2)
-    public void loginTest() throws InterruptedException {
+    void loginTest() throws InterruptedException, IOException {
+        loginPage();
         for (String email : testData.getEmail()) {
             Commons.enter(driver, By.id(locators.getProperty("username_field")), email);
             Commons.enter(driver, By.id(locators.getProperty("password_field")), testData.getPassword());
@@ -55,7 +57,7 @@ public class LoginPageTest extends DriverCreator {
             } else {
                 WebElement errorElement = driver.findElement(By.xpath(locators.getProperty("login_error_message")));
                 String errorMessage = errorElement.getText();
-                Assert.assertEquals(errorMessage, "Wrong login/password", "Error message mismatch for invalid credentials.");
+                Assert.assertEquals(errorMessage, "Login failed due to Invalid credentials !", "Error message mismatch for invalid credentials.");
             }
         }
     }

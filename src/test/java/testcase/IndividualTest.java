@@ -9,6 +9,7 @@ import utilities.Commons;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class IndividualTest extends BaseLogin {
 
@@ -39,29 +40,25 @@ public class IndividualTest extends BaseLogin {
 //        Commons.click(driver, By.xpath(locators.getProperty("save&close")));
         Commons.click(driver,By.xpath(locators.getProperty("save")));
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
-        String familyname = "Auto";
-        String givenname = "Test";
-        String additionalname = "Individual";
-        List<String> individualName = Arrays.asList(familyname,givenname+" "+additionalname);
-        String tableXPath = "//table[@class='o_list_table table table-sm table-hover position-relative mb-0 o_list_table_ungrouped table-striped']";
-//        Thread.sleep(3000);
-        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName.toString());
+        String individualName = familyName + ", " + givenName + " " + additionalName;
+        String tableXPath = locators.getProperty("individual_table");
+        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName);
         System.out.println(entryFound);
         Assert.assertTrue(entryFound, "Expected entry with text '" + individualName + "' not found");
+
     }
 
 
     @Test
     public static void individualUpdate() throws IOException, InterruptedException {
         login();
+        String familyName = testData.getFamilyName();
+        String givenName = testData.getGivenName();
+        String additionalName = testData.getAdditionalName();
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
-        String familyname = "Auto";
-        String givenname = "Test";
-        String additionalname = "Individual";
-        List<String> individualName = Arrays.asList(familyname,givenname+" "+additionalname);
+        String individualName = familyName+ ", " + givenName + " " + additionalName;
         String tableXPath = "//table[@class='o_list_table table table-sm table-hover position-relative mb-0 o_list_table_ungrouped table-striped']";
-//        Thread.sleep(3000);
-        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName.toString());
+        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName);
 
     }
 }

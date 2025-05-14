@@ -1,0 +1,1 @@
+{"uuid":"79488eb4-5265-4cd3-b164-c8ff9156b719","name":"base.BaseLogin","children":["e8806959-7d57-441d-808d-1c831ba77963"],"befores":[{"name":"importTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1746784550617,"stop":1746784551086}],"afters":[],"start":1746784550534,"stop":1746784563625}
