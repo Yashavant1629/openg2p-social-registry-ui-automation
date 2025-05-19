@@ -30,19 +30,16 @@ public class BaseLogin extends DriverCreator{
         fileReader2 = new FileReader("src/main/resources/configfiles/locators.properties");
         properties.load(fileReader1);
         locators.load(fileReader2);
-        Thread.sleep(2000);
 
         WebElement socialRegistry = driver.findElement(By.xpath(locators.getProperty("social_registry")));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", socialRegistry);
         ((JavascriptExecutor) driver).executeScript(
                 "document.querySelectorAll('a[target=\"_blank\"]').forEach(el => el.setAttribute('target', '_self'));");
-        Thread.sleep(2000);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", socialRegistry);
 
         WebElement socialRegistryAdmin = driver.findElement(By.xpath(locators.getProperty("social_registry_admin")));
         ((JavascriptExecutor) driver).executeScript(
                 "document.querySelectorAll('a[target=\"_blank\"]').forEach(el => el.setAttribute('target', '_self'));");
-        Thread.sleep(2000);
         socialRegistryAdmin.click();
         driver.findElement(By.name(locators.getProperty("username_field"))).sendKeys(properties.getProperty("username"));
         driver.findElement(By.id(locators.getProperty("password_field"))).sendKeys(properties.getProperty("password"));
@@ -57,19 +54,15 @@ public class BaseLogin extends DriverCreator{
         properties.load(fileReader1);
         locators.load(fileReader2);
 
-        Thread.sleep(2000);
-
         WebElement socialRegistry = driver.findElement(By.xpath(locators.getProperty("social_registry")));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", socialRegistry);
         ((JavascriptExecutor) driver).executeScript(
                 "document.querySelectorAll('a[target=\"_blank\"]').forEach(el => el.setAttribute('target', '_self'));");
-        Thread.sleep(2000);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", socialRegistry);
 
         WebElement socialRegistryAdmin = driver.findElement(By.xpath(locators.getProperty("social_registry_admin")));
         ((JavascriptExecutor) driver).executeScript(
                 "document.querySelectorAll('a[target=\"_blank\"]').forEach(el => el.setAttribute('target', '_self'));");
-        Thread.sleep(2000);
         socialRegistryAdmin.click();
     }
 }

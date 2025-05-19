@@ -1,1 +1,0 @@
-{"uuid":"4aef8542-a1d2-4ec9-8bba-68360e2d2ff7","name":"testcase.IdTypeTest","children":["97dcbe35-84be-4617-a918-26ebf82b8325"],"befores":[{"name":"importTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1747030990381,"stop":1747030990646}],"afters":[],"start":1747030990333,"stop":1747031010052}

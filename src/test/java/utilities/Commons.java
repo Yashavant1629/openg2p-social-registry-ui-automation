@@ -136,11 +136,22 @@ public class Commons {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
 
         try {
+
+            element.click();
             element.clear();
+
+
             element.sendKeys(Keys.CONTROL + "a");
             element.sendKeys(Keys.DELETE);
-            element.sendKeys(value);
+
+
+            if (value != null) {
+                element.sendKeys(value);
+            } else {
+                System.out.println("Warning: Tried to send null value to element located by: " + by.toString());
+            }
         } catch (Exception e) {
+            System.err.println("Error in clearAndEnter() for locator: " + by.toString());
             e.printStackTrace();
         }
     }
@@ -176,4 +187,50 @@ public class Commons {
         System.out.println("Entry '" + entryName + "' not found in the table.");
         return table;
     }
+
+    public static boolean clickEntryInPaginatedTable(WebDriver driver, String tableXPath, String expectedText) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        while (true) {
+            WebElement table = driver.findElement(By.xpath(tableXPath));
+            List<WebElement> rows = table.findElements(By.tagName("tr"));
+
+            for (WebElement row : rows) {
+                String rowText = row.getText().trim();
+                if (rowText.contains(expectedText)) {
+                    row.click();
+                    return true;
+                }
+            }
+
+            List<WebElement> nextButtons = driver.findElements(By.xpath("//a[contains(@class, 'o_pager_next')]"));
+            if (nextButtons.isEmpty() || !nextButtons.get(0).isEnabled()) {
+                break;
+            }
+            WebElement nextButton = nextButtons.get(0);
+            String oldFirstRowText = rows.get(0).getText();
+            nextButton.click();
+            wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElementLocated(
+                    By.xpath(tableXPath + "//tr[1]"),
+                    oldFirstRowText
+            )));
+        }
+
+        return false;
+    }
+
+    public static void clear(WebDriver driver, By by) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
+
+        try {
+            element.clear();
+            element.sendKeys(Keys.CONTROL + "a");
+            element.sendKeys(Keys.DELETE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to clear input field located by: " + by.toString(), e);
+        }
+    }
+
 }

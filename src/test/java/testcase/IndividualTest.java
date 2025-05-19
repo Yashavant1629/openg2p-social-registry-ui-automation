@@ -2,18 +2,21 @@ package testcase;
 
 import base.BaseLogin;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.Commons;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 public class IndividualTest extends BaseLogin {
 
-    @Test
+    @Test(priority = 1)
     public static void individualCreation() throws IOException, InterruptedException {
         login();
         String familyName = testData.getFamilyName();
@@ -42,6 +45,7 @@ public class IndividualTest extends BaseLogin {
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
         String individualName = familyName + ", " + givenName + " " + additionalName;
         String tableXPath = locators.getProperty("individual_table");
+        Thread.sleep(2000);
         boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName);
         System.out.println(entryFound);
         Assert.assertTrue(entryFound, "Expected entry with text '" + individualName + "' not found");
@@ -49,16 +53,23 @@ public class IndividualTest extends BaseLogin {
     }
 
 
-    @Test
+    @Test(priority = 2, dependsOnMethods = {"individualCreation"})
     public static void individualUpdate() throws IOException, InterruptedException {
         login();
         String familyName = testData.getFamilyName();
         String givenName = testData.getGivenName();
         String additionalName = testData.getAdditionalName();
+//        String updatedAddress = testData.getUpdateAddress();
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
         String individualName = familyName+ ", " + givenName + " " + additionalName;
-        String tableXPath = "//table[@class='o_list_table table table-sm table-hover position-relative mb-0 o_list_table_ungrouped table-striped']";
-        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName);
+        String tableXPath = locators.getProperty("individual_table");
+        boolean entryClicked = Commons.clickEntryInPaginatedTable(driver, tableXPath, individualName);
+        Assert.assertTrue(entryClicked, "Expected entry '" + individualName + "' not found and clicked.");
+
+        Commons.clear(driver,By.id(locators.getProperty("address")));
+        Commons.enter(driver, By.id(locators.getProperty("address")), "Karnataka");
+        Commons.click(driver,By.xpath(locators.getProperty("save")));
+        Commons.click(driver, By.xpath(locators.getProperty("individuals")));
 
     }
 }

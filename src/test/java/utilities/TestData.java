@@ -1,10 +1,11 @@
 package utilities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 
 import java.util.Collections;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TestData {
     private List<String> idType;
     private String registrantTag;
@@ -15,7 +16,7 @@ public class TestData {
     private String groupType;
     private String groupMembershipKind;
     private String region;
-    public List<String> groupName;
+    public String groupName;
     private String tags;
     public String groupNameUpdated;
 
@@ -29,6 +30,25 @@ public class TestData {
     private String income;
     private String address;
     private String district;
+    private String updatedAddress;
+
+    public String getGenderUpdated() {
+        return genderUpdated;
+    }
+
+    public void setGenderUpdated(String genderUpdated) {
+        this.genderUpdated = genderUpdated;
+    }
+
+    private String genderUpdated;
+
+    public String getUpdateAddress() {
+        return updatedAddress;
+    }
+
+    public void setUpdateAddress(String updateAddress) {
+        this.updatedAddress = updateAddress;
+    }
 
     public String getRegion() {
 
@@ -117,11 +137,11 @@ public class TestData {
         this.relation = relation;
     }
 
-   public List<String> getGroupname() {
+   public String getGroupName() {
         return groupName;
     }
 
-    public void setGroupname(List<String> groupName) {
+    public void setGroupname(String groupName) {
         this.groupName = groupName;
     }
 

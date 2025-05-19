@@ -4,11 +4,12 @@
   "idType": ["AutoID1","AutoId2"],
   "registrantTag": "AutoTestTag",
   "gender": "AutoTestGender",
+  "genderUpdated" : "AutoTestGenderUpdated",
   "relation": "AutoTestRelation",
   "groupType": "AutoTestKind",
   "groupMembershipKind": "AutoTestMemberKind",
   "region": "AutoTestRegion",
-  "groupName": ["AutoTestGroup","AutoTestDummy"],
+  "groupName": "AutoTestGroup",
   "tags": "AutoTestTag",
   "address": "Bangalore",
   "groupNameUpdated": "AutoTestGroupUpdated",
@@ -20,5 +21,6 @@
   "civilStatus": "Citizen",
   "occupation": "Software Engineer",
   "income": "1000000",
-  "district": "AutoTestDistrict"
+  "district": "AutoTestDistrict",
+  "updatedAddress": "Karnataka"
 }

@@ -1,1 +1,0 @@
-{"uuid":"9228b926-5c33-44cf-b637-32ab386fb7e5","name":"testcase.IndividualTest","children":["ca6fcd70-fae8-498c-83f3-3675c8cff426"],"befores":[{"name":"importTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1733989196612,"stop":1733989196999}],"afters":[],"start":1733989196553,"stop":1733989220484}
