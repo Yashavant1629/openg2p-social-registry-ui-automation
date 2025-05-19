@@ -5,7 +5,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static java.lang.Thread.sleep;
 
@@ -60,32 +62,40 @@ public class Commons {
         return null;
     }
 
-    public static boolean isEntryPresentInPaginatedTable(WebDriver driver, String tableXpath, String expectedText) {
-        boolean entryFound = false;
+    public static boolean isEntryPresentInPaginatedTable(WebDriver driver, String tableXPath, String expectedText) {
+        Set<String> visitedFirstRowTexts = new HashSet<>();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         while (true) {
-            try {
-                if (isEntryPresent(driver, tableXpath, expectedText)) {
-                    entryFound = true;
-                    System.out.println("Found expected text: " + expectedText);
-                    break;
-                }
-
-                WebElement nextPageButton = driver.findElement(By.xpath("//button[@class='oi oi-chevron-right btn btn-secondary o_pager_next px-2 rounded-end']"));
-                if (nextPageButton.isEnabled()) {
-                    nextPageButton.click();
-
-                } else {
-                    System.out.println("Expected text not found on any page: " + expectedText);
-                    break;
-                }
-            } catch (StaleElementReferenceException e) {
-                System.out.println("Stale Element Reference Exception occurred. Retrying...");
-                continue;
+            List<WebElement> rows = driver.findElements(By.xpath(tableXPath + "//tr"));
+            if (rows.isEmpty()) {
+                return false;
             }
+
+            for (WebElement row : rows) {
+                if (row.getText().contains(expectedText)) {
+                    return true;
+                }
+            }
+
+            String firstRowText = rows.get(0).getText();
+            if (visitedFirstRowTexts.contains(firstRowText)) {
+                break;
+            }
+            visitedFirstRowTexts.add(firstRowText);
+
+            List<WebElement> nextButtons = driver.findElements(By.xpath("//button[contains(.,'Next')]"));
+            if (nextButtons.isEmpty() || !nextButtons.get(0).isEnabled()) {
+                break;
+            }
+
+            nextButtons.get(0).click();
+            wait.until(ExpectedConditions.stalenessOf(rows.get(0)));
         }
-        return entryFound;
+
+        return false;
     }
+
 
     public static boolean isEntryPresent(WebDriver driver, String tableXpath, String expectedText) {
         WebElement table = driver.findElement(By.xpath(tableXpath));

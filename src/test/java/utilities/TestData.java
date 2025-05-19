@@ -18,7 +18,6 @@ public class TestData {
     private String region;
     public String groupName;
     private String tags;
-    public String groupNameUpdated;
 
     public String familyName;
     public  String givenName;
@@ -31,6 +30,16 @@ public class TestData {
     private String address;
     private String district;
     private String updatedAddress;
+
+    public String getGroupNameUpdated() {
+        return groupNameUpdated;
+    }
+
+    public void setGroupNameUpdated(String groupNameUpdated) {
+        this.groupNameUpdated = groupNameUpdated;
+    }
+
+    private String groupNameUpdated;
 
     public String getGroupTypeUpdated() {
         return groupTypeUpdated;
@@ -176,9 +185,7 @@ public class TestData {
     public String getAddress() {
         return address;
     }
-    public String getUpdatedgroupname() {
-        return groupNameUpdated;
-    }
+
     public String getFamilyName() {
         return familyName;
     }

@@ -2,17 +2,21 @@ package testcase;
 
 import base.BaseLogin;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.Commons;
 
 import java.io.IOException;
+import java.time.Duration;
 
 public class GroupTest extends BaseLogin {
 
     @Test(priority = 1)
-    public static void groupCreation() throws IOException, InterruptedException {
+    void groupCreation() throws IOException, InterruptedException {
         login();
             String groupName = testData.getGroupName();
             Commons.click(driver, By.xpath(locators.getProperty("group")));
@@ -35,24 +39,44 @@ public class GroupTest extends BaseLogin {
 
     }
 
-    @Test(priority = 2)
-    public static void groupUpdate() throws IOException, InterruptedException {
+    @Test(priority = 2, dependsOnMethods = {"groupCreation"})
+    void groupUpdation() throws IOException, InterruptedException {
         login();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         String groupName = testData.getGroupName();
-        String updatedGroupName = testData.getUpdatedgroupname();
+        String groupNameUpdated = testData.getGroupNameUpdated();
         Commons.click(driver, By.xpath(locators.getProperty("group")));
-        Thread.sleep(2000);
         String tableXPath = locators.getProperty("group_table");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
         boolean entryClicked = Commons.clickEntryInPaginatedTable(driver, tableXPath, groupName);
         Assert.assertTrue(entryClicked, "Expected entry '" + groupName + "' not found and clicked.");
-        Commons.clear(driver,By.xpath(locators.getProperty("group_name_field")));
-        Commons.enter(driver,By.xpath(locators.getProperty("group_name_field")),updatedGroupName);
-        Commons.click(driver, By.xpath(locators.getProperty("contact_details")));
-        Commons.clearAndEnter(driver, By.id(locators.getProperty("address")),testData.getAddress());
+        Commons.clearAndEnter(driver,By.xpath(locators.getProperty("group_name_field")),groupNameUpdated);
         Commons.click(driver,By.xpath(locators.getProperty("save")));
         Commons.click(driver, By.xpath(locators.getProperty("groups")));
-        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, updatedGroupName);
-        Assert.assertTrue(entryFound, "Expected entry with text '" + updatedGroupName + "' not found");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
+        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, groupNameUpdated);
+        Assert.assertTrue(entryFound, "Expected entry with text '" + groupNameUpdated + "' not found");
+
+    }
+
+    @Test(priority = 3,dependsOnMethods = {"groupUpdation"})
+    void groupDeletion() throws IOException, InterruptedException {
+        login();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        String groupNameUpdated = testData.getGroupNameUpdated();
+        Commons.click(driver, By.xpath(locators.getProperty("group")));
+        String tableXPath = locators.getProperty("group_table");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
+        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, groupNameUpdated);
+        Assert.assertTrue(entryFound, "Expected entry with text '" + groupNameUpdated + "' not found");
+        String rowCheckboxXPath = "//tr[td[contains(text(),'" + groupNameUpdated + "')]]//input[@type='checkbox']";
+        Commons.click(driver, By.xpath(rowCheckboxXPath));
+        Commons.click(driver,By.xpath(locators.getProperty("actions")));
+        Commons.click(driver,By.xpath(locators.getProperty("delete")));
+        Commons.click(driver,By.xpath(locators.getProperty("delete_confirmation")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
+        boolean entryStillExists = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, groupNameUpdated);
+        Assert.assertFalse(entryStillExists, "Entry with text '" + groupNameUpdated + "' should be deleted but still exists.");
 
     }
 }
