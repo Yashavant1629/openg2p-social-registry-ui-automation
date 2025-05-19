@@ -18,12 +18,13 @@
   "address": "Bangalore",
   "familyName":"AUTO",
   "givenName": "TEST",
+  "givenNameUpdated": "UPDATED",
   "additionalName": "INDIVIDUAL",
   "individualEmail": "testindividual@gmail.com",
   "dob": "06/16/2000",
   "civilStatus": "Citizen",
   "occupation": "Software Engineer",
   "income": "1000000",
-  "district": "AutoTestDistrict",
-  "updatedAddress": "Karnataka"
+  "district": "AutoTestDistrict"
+
 }

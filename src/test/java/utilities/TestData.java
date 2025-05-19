@@ -29,7 +29,17 @@ public class TestData {
     private String income;
     private String address;
     private String district;
-    private String updatedAddress;
+
+    public String getGivenNameUpdated() {
+        return givenNameUpdated;
+    }
+
+    public void setGivenNameUpdated(String givenNameUpdated) {
+        this.givenNameUpdated = givenNameUpdated;
+    }
+
+    private String givenNameUpdated;
+
 
     public String getIdTypeUpdated() {
         return idTypeUpdated;
@@ -81,13 +91,6 @@ public class TestData {
 
     private String genderUpdated;
 
-    public String getUpdateAddress() {
-        return updatedAddress;
-    }
-
-    public void setUpdateAddress(String updateAddress) {
-        this.updatedAddress = updateAddress;
-    }
 
     public String getRegion() {
 

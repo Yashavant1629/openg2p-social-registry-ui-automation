@@ -17,8 +17,9 @@ import java.util.Locale;
 public class IndividualTest extends BaseLogin {
 
     @Test(priority = 1)
-    public static void individualCreation() throws IOException, InterruptedException {
+    void individualCreation() throws IOException, InterruptedException {
         login();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         String familyName = testData.getFamilyName();
         String givenName = testData.getGivenName();
         String additionalName = testData.getAdditionalName();
@@ -45,31 +46,58 @@ public class IndividualTest extends BaseLogin {
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
         String individualName = familyName + ", " + givenName + " " + additionalName;
         String tableXPath = locators.getProperty("individual_table");
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
         boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualName);
-        System.out.println(entryFound);
         Assert.assertTrue(entryFound, "Expected entry with text '" + individualName + "' not found");
 
     }
 
 
     @Test(priority = 2, dependsOnMethods = {"individualCreation"})
-    public static void individualUpdate() throws IOException, InterruptedException {
+    void individualUpdation() throws IOException, InterruptedException {
         login();
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(2));
         String familyName = testData.getFamilyName();
         String givenName = testData.getGivenName();
         String additionalName = testData.getAdditionalName();
-//        String updatedAddress = testData.getUpdateAddress();
+        String givenNameUpdated = testData.getGivenNameUpdated();
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
         String individualName = familyName+ ", " + givenName + " " + additionalName;
         String tableXPath = locators.getProperty("individual_table");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
         boolean entryClicked = Commons.clickEntryInPaginatedTable(driver, tableXPath, individualName);
         Assert.assertTrue(entryClicked, "Expected entry '" + individualName + "' not found and clicked.");
-
-        Commons.clear(driver,By.id(locators.getProperty("address")));
-        Commons.enter(driver, By.id(locators.getProperty("address")), "Karnataka");
+        Commons.enter(driver, By.id(locators.getProperty("given_name")), givenNameUpdated);
         Commons.click(driver,By.xpath(locators.getProperty("save")));
         Commons.click(driver, By.xpath(locators.getProperty("individuals")));
+        String individualNameUpdated = familyName+ ", " + givenNameUpdated + " " + additionalName;
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
+        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualNameUpdated);
+        Assert.assertTrue(entryFound, "Expected entry with text '" + individualNameUpdated + "' not found");
 
     }
+
+    @Test(priority = 3, dependsOnMethods = {"individualUpdation"})
+    void individualDeletion() throws IOException, InterruptedException {
+        login();
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(2));
+        String familyName = testData.getFamilyName();
+        String additionalName = testData.getAdditionalName();
+        String givenNameUpdated = testData.getGivenNameUpdated();
+        Commons.click(driver, By.xpath(locators.getProperty("individuals")));
+        String individualNameUpdated = familyName+ ", " + givenNameUpdated + " " + additionalName;
+        String tableXPath = locators.getProperty("individual_table");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
+        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualNameUpdated);
+        Assert.assertTrue(entryFound, "Expected entry with text '" + individualNameUpdated + "' not found");
+        String rowCheckboxXPath = "//tr[td[contains(text(),'" + individualNameUpdated + "')]]//input[@type='checkbox']";
+        Commons.click(driver, By.xpath(rowCheckboxXPath));
+        Commons.click(driver,By.xpath(locators.getProperty("actions")));
+        Commons.click(driver,By.xpath(locators.getProperty("delete")));
+        Commons.click(driver,By.xpath(locators.getProperty("delete_confirmation")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
+        boolean entryStillExists = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, individualNameUpdated);
+        Assert.assertFalse(entryStillExists, "Entry with text '" + individualNameUpdated + "' should be deleted but still exists.");
+    }
+
 }
