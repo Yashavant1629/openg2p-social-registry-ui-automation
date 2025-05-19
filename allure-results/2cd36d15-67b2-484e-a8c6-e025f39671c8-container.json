@@ -1,1 +1,0 @@
-{"uuid":"2cd36d15-67b2-484e-a8c6-e025f39671c8","name":"testcase.GenderTypesTest","children":["49eaad3b-b785-487b-9faa-edbf43c4db96"],"befores":[{"name":"importTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1747636356765,"stop":1747636356974}],"afters":[],"start":1747636356725,"stop":1747636381783}

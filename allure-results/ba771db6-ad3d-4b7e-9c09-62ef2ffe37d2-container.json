@@ -1,1 +1,0 @@
-{"uuid":"ba771db6-ad3d-4b7e-9c09-62ef2ffe37d2","name":"testcase.GroupTest","children":["8ba0a540-c564-4477-82c8-29dfb92c2a95"],"befores":[{"name":"importTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1747652412342,"stop":1747652412636}],"afters":[],"start":1747652412286,"stop":1747652436846}

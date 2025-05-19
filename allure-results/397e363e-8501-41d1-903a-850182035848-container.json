@@ -1,1 +1,0 @@
-{"uuid":"397e363e-8501-41d1-903a-850182035848","name":"testcase.GroupMembershipKindTest","children":["5b75981c-c56f-4eb6-a713-04b5686d7588"],"befores":[{"name":"importTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1747641575992,"stop":1747641576411}],"afters":[],"start":1747641575927,"stop":1747641596122}

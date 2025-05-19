@@ -30,6 +30,26 @@ public class TestData {
     private String address;
     private String district;
 
+    public String getRegistrantTagUpdated() {
+        return registrantTagUpdated;
+    }
+
+    public void setRegistrantTagUpdated(String registrantTagUpdated) {
+        this.registrantTagUpdated = registrantTagUpdated;
+    }
+
+    private String registrantTagUpdated;
+
+    public String getRegionUpdated() {
+        return regionUpdated;
+    }
+
+    public void setRegionUpdated(String regionUpdated) {
+        this.regionUpdated = regionUpdated;
+    }
+
+    private String regionUpdated;
+
     public String getGivenNameUpdated() {
         return givenNameUpdated;
     }
