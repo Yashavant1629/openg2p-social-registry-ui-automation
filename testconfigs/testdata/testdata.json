@@ -1,7 +1,8 @@
 {
   "email": ["yashavant@openg2p.org","yash@openg2p.org"],
   "password": "pass",
-  "idType": ["AutoID1","AutoId2"],
+  "idType": "AutoID",
+  "idTypeUpdated": "AutoIdUpdated",
   "registrantTag": "AutoTestTag",
   "gender": "AutoTestGender",
   "genderUpdated" : "AutoTestGenderUpdated",

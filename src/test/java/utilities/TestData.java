@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TestData {
-    private List<String> idType;
+    private String idType;
     private String registrantTag;
     private String gender;
     private String relation;
@@ -30,6 +30,16 @@ public class TestData {
     private String address;
     private String district;
     private String updatedAddress;
+
+    public String getIdTypeUpdated() {
+        return idTypeUpdated;
+    }
+
+    public void setIdTypeUpdated(String idTypeUpdated) {
+        this.idTypeUpdated = idTypeUpdated;
+    }
+
+    private String idTypeUpdated;
 
     public String getGroupNameUpdated() {
         return groupNameUpdated;
@@ -126,12 +136,12 @@ public class TestData {
         this.email = email;
     }
 
-    public List<String> getIdType() {
+    public String getIdType() {
 
         return idType;
     }
 
-    public void setIdType(List<String> idType) {
+    public void setIdType(String idType) {
 
         this.idType = idType;
     }
