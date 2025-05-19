@@ -14,7 +14,7 @@ import java.time.Duration;
 
 public class GenderTypeTest extends BaseLogin {
     @Test(priority = 1)
-    public static void genderTypeCreation() throws IOException, InterruptedException {
+    void genderTypeCreation() throws IOException, InterruptedException {
         login();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         String gender = testData.getGender();
@@ -35,19 +35,19 @@ public class GenderTypeTest extends BaseLogin {
         login();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         String gender = testData.getGender();
-        String updatedGender = testData.getGenderUpdated();
+        String genderUpdated = testData.getGenderUpdated();
         Commons.click(driver, By.xpath(locators.getProperty("registry_configuration")));
         Commons.click(driver,By.xpath(locators.getProperty("gender_type")));
         String tableXPath = locators.getProperty("gender_table");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
         boolean entryFound = Commons.clickEntryInPaginatedTable(driver, tableXPath, gender);
         Assert.assertTrue(entryFound, "Expected entry with text '" + gender + "' not found");
-        Commons.clearAndEnter(driver,By.xpath(locators.getProperty("gender_type_data_input_code")),updatedGender);
-        Commons.clearAndEnter(driver,By.xpath(locators.getProperty("gender_type_data_input_value")),updatedGender);
+        Commons.clearAndEnter(driver,By.xpath(locators.getProperty("gender_type_data_input_code")),genderUpdated);
+        Commons.clearAndEnter(driver,By.xpath(locators.getProperty("gender_type_data_input_value")),genderUpdated);
         Commons.click(driver,By.xpath(locators.getProperty("save_update")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
-        boolean entryUpdateFound = Commons.clickEntryInPaginatedTable(driver, tableXPath, updatedGender);
-        Assert.assertTrue(entryUpdateFound, "Expected entry with text '" + updatedGender + "' not found");
+        boolean entryUpdateFound = Commons.clickEntryInPaginatedTable(driver, tableXPath, genderUpdated);
+        Assert.assertTrue(entryUpdateFound, "Expected entry with text '" + genderUpdated + "' not found");
 
     }
 
@@ -55,21 +55,21 @@ public class GenderTypeTest extends BaseLogin {
     void genderTypeDeletion() throws IOException, InterruptedException {
         login();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        String updatedGender = testData.getGenderUpdated();
+        String genderUpdated = testData.getGenderUpdated();
         Commons.click(driver, By.xpath(locators.getProperty("registry_configuration")));
         Commons.click(driver,By.xpath(locators.getProperty("gender_type")));
         String tableXPath = locators.getProperty("gender_table");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
-        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, updatedGender);
-        Assert.assertTrue(entryFound, "Expected entry with text '" + updatedGender + "' not found");
-        String rowCheckboxXPath = "//tr[td[contains(text(),'" + updatedGender + "')]]//input[@type='checkbox']";
+        boolean entryFound = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, genderUpdated);
+        Assert.assertTrue(entryFound, "Expected entry with text '" + genderUpdated + "' not found");
+        String rowCheckboxXPath = "//tr[td[contains(text(),'" + genderUpdated + "')]]//input[@type='checkbox']";
         Commons.click(driver, By.xpath(rowCheckboxXPath));
         Commons.click(driver,By.xpath(locators.getProperty("actions")));
         Commons.click(driver,By.xpath(locators.getProperty("delete")));
         Commons.click(driver,By.xpath(locators.getProperty("delete_confirmation")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
-        boolean entryStillExists = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, updatedGender);
-        Assert.assertFalse(entryStillExists, "Entry with text '" + updatedGender + "' should be deleted but still exists.");
+        boolean entryStillExists = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, genderUpdated);
+        Assert.assertFalse(entryStillExists, "Entry with text '" + genderUpdated + "' should be deleted but still exists.");
 
     }
 }

@@ -32,6 +32,26 @@ public class TestData {
     private String district;
     private String updatedAddress;
 
+    public String getGroupTypeUpdated() {
+        return groupTypeUpdated;
+    }
+
+    public void setGroupTypeUpdated(String groupTypeUpdated) {
+        this.groupTypeUpdated = groupTypeUpdated;
+    }
+
+    private String groupTypeUpdated;
+
+    public String getGroupMembershipKindUpdated() {
+        return groupMembershipKindUpdated;
+    }
+
+    public void setGroupMembershipKindUpdated(String groupMembershipKindUpdated) {
+        this.groupMembershipKindUpdated = groupMembershipKindUpdated;
+    }
+
+    private String groupMembershipKindUpdated;
+
     public String getGenderUpdated() {
         return genderUpdated;
     }
