@@ -10,7 +10,7 @@ public class TestData {
     private String idType;
     private String registrantTag;
     private String gender;
-    private String relation;
+
     private List<String> email;
     private List<String> password;
     private String groupType;
@@ -29,6 +29,35 @@ public class TestData {
     private String income;
     private String address;
     private String district;
+    private String relationName;
+
+    public String getRelationNameUpdated() {
+        return relationNameUpdated;
+    }
+
+    public void setRelationNameUpdated(String relationNameUpdated) {
+        this.relationNameUpdated = relationNameUpdated;
+    }
+
+    private String relationNameUpdated;
+
+    public String getRelationName() {
+        return relationName;
+    }
+
+    public void setRelationName(String relationName) {
+        this.relationName = relationName;
+    }
+
+    public String getRelationInverseName() {
+        return relationInverseName;
+    }
+
+    public void setRelationInverseName(String relationInverseName) {
+        this.relationInverseName = relationInverseName;
+    }
+
+    private String relationInverseName;
 
     public String getRegistrantTagUpdated() {
         return registrantTagUpdated;
@@ -189,15 +218,6 @@ public class TestData {
         this.gender = gender;
     }
 
-    public String getRelation() {
-
-        return relation;
-    }
-
-    public void setRelation(String relation) {
-
-        this.relation = relation;
-    }
 
    public String getGroupName() {
         return groupName;
