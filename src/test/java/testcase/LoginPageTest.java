@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.Commons;
-import utilities.ReadXLSData;
 import utilities.TestData;
 
 import java.io.File;

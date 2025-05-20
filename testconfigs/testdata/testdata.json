@@ -29,6 +29,7 @@
   "civilStatus": "Citizen",
   "occupation": "Software Engineer",
   "income": "1000000",
-  "district": "AutoTestDistrict"
+  "district": "AutoTestDistrict",
+  "districtUpdated": "AutoTestDistrictUpdated"
 
 }

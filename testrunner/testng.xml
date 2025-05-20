@@ -16,6 +16,7 @@
             <class name="testcase.RegionTest"/>
             <class name="testcase.RegistrantTagsTest"/>
             <class name="testcase.RelationshipTest"/>
+            <class name="testcase.DistrictConfigTest"/>
 
         </classes>
     </test>

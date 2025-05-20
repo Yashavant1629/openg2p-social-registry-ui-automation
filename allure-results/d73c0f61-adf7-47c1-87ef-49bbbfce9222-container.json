@@ -1,0 +1,1 @@
+{"uuid":"d73c0f61-adf7-47c1-87ef-49bbbfce9222","name":"testcase.DistrictConfigTest","children":["948c5c9d-472d-4f72-9063-7468e7dc9ffe"],"befores":[{"name":"importTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1747688121713,"stop":1747688121915}],"afters":[],"start":1747688121674,"stop":1747688141103}

@@ -31,7 +31,6 @@ public class IdTypeTest extends BaseLogin {
         Commons.click(driver, By.xpath(locators.getProperty("id_type")));
         Commons.click(driver, By.xpath(locators.getProperty("create_button")));
         Commons.enter(driver, By.xpath(locators.getProperty("configurations_data_input")), idType);
-        Thread.sleep(5000);
         Commons.click(driver, By.xpath(locators.getProperty("id_type_save_button")));
         String tableXPath = locators.getProperty("idtype_table");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));

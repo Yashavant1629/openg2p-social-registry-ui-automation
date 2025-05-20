@@ -28,9 +28,28 @@ public class TestData {
     private String occupation;
     private String income;
     private String address;
-    private String district;
+
+    public String getDistrictUpdated() {
+        return districtUpdated;
+    }
+
+    public void setDistrictUpdated(String districtUpdated) {
+        this.districtUpdated = districtUpdated;
+    }
+
+    private String districtUpdated;
+
     private String relationName;
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    private String district;
     public String getRelationNameUpdated() {
         return relationNameUpdated;
     }
@@ -266,8 +285,5 @@ public class TestData {
     }
     public String getIncome(){
         return income;
-    }
-    public String getDistrict(){
-        return district;
     }
 }
