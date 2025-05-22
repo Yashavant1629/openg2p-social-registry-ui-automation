@@ -72,22 +72,22 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
 
-      - name: Install Allure
-        run: |
-          sudo apt-get install default-jre
-          wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
-          sudo dpkg -i allure_2.18.1-1_all.deb
+      # - name: Install Allure
+      #   run: |
+      #     sudo apt-get install default-jre
+      #     wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
+      #     sudo dpkg -i allure_2.18.1-1_all.deb
 
-      - name: Generate Allure Report
-        run: |
-          allure generate --clean
+      # - name: Generate Allure Report
+      #   run: |
+      #     allure generate --clean
 
-      - name: Deploy to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          publish_dir: allure-report
-          personal_token: ${{ secrets.GH_PAGES_TOKEN }}
+      # - name: Deploy to GitHub Pages
+      #   if: always()
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     publish_dir: allure-report
+      #     personal_token: ${{ secrets.GH_PAGES_TOKEN }}
 
       # - name: Upload tar as Artifact
       #   uses: actions/upload-artifact@v3
@@ -117,6 +117,34 @@ jobs:
       #     message: 'added helm charts for release ${{ github.event.inputs.git-ref }}'
       #     add: './*.tgz ./index.yaml'
       #   if: env.SKIP != 'TRUE'
+
+      - name: Allure setup
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: build/allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-results
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-results
+
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: 'Test report'
+          state: 'success'
+          sha: ${{ github.sha }}
+          target_url: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}//${{ github.run_number }}
 
       - name: Slack Notification on failure
         if: ${{ failure() }}
