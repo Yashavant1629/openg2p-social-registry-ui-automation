@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up JDK 17
         uses: actions/setup-java@v2
@@ -82,34 +82,41 @@ jobs:
         run: |
           allure generate --clean
 
-      - name: Upload tar as Artifact
-        uses: actions/upload-artifact@v3
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: charts
-          path: ./*.tgz
-        if: env.SKIP != 'TRUE'
+          publish_dir: allure-report
+          personal_token: ${{ secrets.GH_PAGES_TOKEN }}
 
-      - name: Checkout branch for publishing
-        uses: actions/checkout@v3
-        with:
-          ref: gh-pages
-        if: env.SKIP != 'TRUE'
+      # - name: Upload tar as Artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: charts
+      #     path: ./*.tgz
+      #   if: env.SKIP != 'TRUE'
 
-      - name: Download tar from Artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: charts
-          path: ./
-        if: env.SKIP != 'TRUE'
+      # - name: Checkout branch for publishing
+      #   uses: actions/checkout@v3
+      #   with:
+      #     ref: gh-pages
+      #   if: env.SKIP != 'TRUE'
 
-      - name: Commit Changes to repository
-        uses: EndBug/add-and-commit@v7
-        with:
-          branch: gh-pages
-          default_author: github_actions
-          message: 'added helm charts for release ${{ github.event.inputs.git-ref }}'
-          add: './*.tgz ./index.yaml'
-        if: env.SKIP != 'TRUE'
+      # - name: Download tar from Artifacts
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: charts
+      #     path: ./
+      #   if: env.SKIP != 'TRUE'
+
+      # - name: Commit Changes to repository
+      #   uses: EndBug/add-and-commit@v7
+      #   with:
+      #     branch: gh-pages
+      #     default_author: github_actions
+      #     message: 'added helm charts for release ${{ github.event.inputs.git-ref }}'
+      #     add: './*.tgz ./index.yaml'
+      #   if: env.SKIP != 'TRUE'
 
       - name: Slack Notification on failure
         if: ${{ failure() }}
