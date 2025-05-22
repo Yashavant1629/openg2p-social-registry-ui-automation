@@ -72,15 +72,15 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
 
-      - name: Install Allure
-        run: |
-          sudo apt-get install default-jre
-          wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
-          sudo dpkg -i allure_2.18.1-1_all.deb
+      # - name: Install Allure
+      #   run: |
+      #     sudo apt-get install default-jre
+      #     wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
+      #     sudo dpkg -i allure_2.18.1-1_all.deb
 
-      - name: Generate Allure Report
-        run: |
-          allure generate --clean
+      # - name: Generate Allure Report
+      #   run: |
+      #     allure generate --clean
 
       # - name: Deploy to GitHub Pages
       #   if: always()
@@ -89,62 +89,34 @@ jobs:
       #     publish_dir: allure-report
       #     personal_token: ${{ secrets.GH_PAGES_TOKEN }}
 
-      - name: Upload tar as Artifact
-        uses: actions/upload-artifact@v2
+      
+      - name: Allure setup
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
         with:
-          name: charts
-          path: ./*.tgz
-        if: env.SKIP != 'TRUE'
+          allure_results: build/allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-results
 
-      - name: Checkout branch for publishing
-        uses: actions/checkout@v2
+      -  name: Deploy report to Github Pages
+         if: always()
+         uses: peaceiris/actions-gh-pages@v2
+         with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-results
+
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
         with:
-          ref: gh-pages
-        if: env.SKIP != 'TRUE'
-
-      - name: Download tar from Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: charts
-          path: ./
-        if: env.SKIP != 'TRUE'
-
-      - name: Commit Changes to repository
-        uses: EndBug/add-and-commit@v7
-        with:
-          branch: gh-pages
-          default_author: github_actions
-          message: 'added helm charts for release ${{ github.event.inputs.git-ref }}'
-          add: './*.tgz ./index.yaml'
-        if: env.SKIP != 'TRUE'
-
-      # - name: Allure setup
-      #   uses: simple-elf/allure-report-action@master
-      #   if: always()
-      #   id: allure-report
-      #   with:
-      #     allure_results: build/allure-results
-      #     gh_pages: gh-pages
-      #     allure_report: allure-report
-      #     allure_history: allure-results
-
-      # -  name: Deploy report to Github Pages
-      #    if: always()
-      #    uses: peaceiris/actions-gh-pages@v2
-      #    with:
-      #     personal_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_branch: gh-pages
-      #     publish_dir: allure-results
-
-      # - name: Post the link to the report
-      #   if: always()
-      #   uses: Sibz/github-status-action@v1
-      #   with:
-      #     authToken: ${{secrets.GITHUB_TOKEN}}
-      #     context: 'Test report'
-      #     state: 'success'
-      #     sha: ${{ github.sha }}
-      #     target_url: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}//${{ github.run_number }}
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: 'Test report'
+          state: 'success'
+          sha: ${{ github.sha }}
+          target_url: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}//${{ github.run_number }}
 
       - name: Slack Notification on failure
         if: ${{ failure() }}
