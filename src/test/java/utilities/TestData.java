@@ -28,6 +28,44 @@ public class TestData {
     private String occupation;
     private String income;
     private String address;
+    private String genderType;
+
+    public String getGroupUpdated() {
+        return groupUpdated;
+    }
+
+    public void setGroupUpdated(String groupUpdated) {
+        this.groupUpdated = groupUpdated;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    private String groupUpdated;
+    private String group;
+
+    public String getGenderType() {
+        return genderType;
+    }
+
+    public void setGenderType(String genderType) {
+        this.genderType = genderType;
+    }
+
+    public String getGenderTypeUpdated() {
+        return genderTypeUpdated;
+    }
+
+    public void setGenderTypeUpdated(String genderTypeUpdated) {
+        this.genderTypeUpdated = genderTypeUpdated;
+    }
+
+    private  String genderTypeUpdated;
 
     public String getDistrictUpdated() {
         return districtUpdated;
@@ -238,7 +276,7 @@ public class TestData {
     }
 
 
-   public String getGroupName() {
+    public String getGroupName() {
         return groupName;
     }
 

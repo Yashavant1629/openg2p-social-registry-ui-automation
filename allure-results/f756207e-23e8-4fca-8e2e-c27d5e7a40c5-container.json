@@ -1,0 +1,1 @@
+{"uuid":"f756207e-23e8-4fca-8e2e-c27d5e7a40c5","name":"testcase.LoginPageTest","children":["76d7f01f-702f-41cd-ad76-8adf20faabaf"],"befores":[{"name":"importTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1748253102236,"stop":1748253102509}],"afters":[],"start":1748253102183,"stop":1748253131867}

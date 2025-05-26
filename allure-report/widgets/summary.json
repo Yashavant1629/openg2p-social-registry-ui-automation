@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 {"reportName":"Allure Report","testRuns":[],"statistic":{"failed":2,"broken":2,"skipped":4,"passed":24,"unknown":0,"total":32},"time":{"start":1747723118630,"stop":1747723598295,"duration":479665,"minDuration":0,"maxDuration":22800,"sumDuration":394775}}
 =======
 {"reportName":"Allure Report","testRuns":[],"statistic":{"failed":1,"broken":1,"skipped":0,"passed":30,"unknown":0,"total":32},"time":{"start":1747737618171,"stop":1747738365576,"duration":747405,"minDuration":13859,"maxDuration":44266,"sumDuration":595871}}
 >>>>>>> 63430c99e8de56b68e4edaf9004906849271f851
+=======
+{"reportName":"Allure Report","testRuns":[],"statistic":{"failed":3,"broken":0,"skipped":0,"passed":24,"unknown":0,"total":27},"time":{"start":1747679168175,"stop":1747679629153,"duration":460978,"minDuration":11395,"maxDuration":23104,"sumDuration":379955}}
+>>>>>>> parent of 9c2d51d (changes)

@@ -30,6 +30,9 @@
   "occupation": "Software Engineer",
   "income": "1000000",
   "district": "AutoTestDistrict",
-  "districtUpdated": "AutoTestDistrictUpdated"
-
+  "districtUpdated": "AutoTestDistrictUpdated",
+  "genderType": "AutoTestGender",
+  "genderTypeUpdated": "AutoTestGenderUpdated",
+  "group": "AutoTestGroup",
+  "groupUpdated": "AutoTestGroupUpdated"
 }

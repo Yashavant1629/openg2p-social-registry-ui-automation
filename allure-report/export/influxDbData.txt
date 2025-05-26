@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 launch_status failed=2 1747723625000000000
 launch_status broken=2 1747723625000000000
 launch_status passed=24 1747723625000000000
@@ -27,3 +28,17 @@ launch_problems test_defects=1 1747743111000000000
 launch_retries retries=0 1747743111000000000
 launch_retries run=32 1747743111000000000
 >>>>>>> 63430c99e8de56b68e4edaf9004906849271f851
+=======
+launch_status failed=3 1747679661000000000
+launch_status broken=0 1747679661000000000
+launch_status passed=24 1747679661000000000
+launch_status skipped=0 1747679661000000000
+launch_status unknown=0 1747679661000000000
+launch_time duration=460978 1747679661000000000
+launch_time min_duration=11395 1747679661000000000
+launch_time max_duration=23104 1747679661000000000
+launch_time sum_duration=379955 1747679661000000000
+launch_problems product_defects=3 1747679661000000000
+launch_retries retries=0 1747679661000000000
+launch_retries run=27 1747679661000000000
+>>>>>>> parent of 9c2d51d (changes)

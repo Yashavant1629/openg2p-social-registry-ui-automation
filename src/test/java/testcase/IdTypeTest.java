@@ -20,6 +20,7 @@ import static base.BaseLogin.login;
 import static base.DriverCreator.driver;
 
 public class IdTypeTest extends BaseLogin {
+
     String idTpye;
     @Test(priority = 1)
     void idTypeCreation() throws IOException, InterruptedException {
@@ -51,7 +52,6 @@ public class IdTypeTest extends BaseLogin {
         Assert.assertTrue(entryFound, "Expected entry with text '" + idType + "' not found");
         Commons.enter(driver,By.xpath(locators.getProperty("configurations_data_input")),idTypeUpdated);
         Commons.click(driver,By.xpath(locators.getProperty("save_update")));
-        
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
         boolean entryUpdateFound = Commons.clickEntryInPaginatedTable(driver, tableXPath, idTypeUpdated);
         Assert.assertTrue(entryUpdateFound, "Expected entry with text '" + idTypeUpdated + "' not found");
@@ -73,7 +73,6 @@ public class IdTypeTest extends BaseLogin {
         Commons.click(driver,By.xpath(locators.getProperty("actions")));
         Commons.click(driver,By.xpath(locators.getProperty("delete")));
         Commons.click(driver,By.xpath(locators.getProperty("delete_confirmation")));
-        
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tableXPath)));
         boolean entryStillExists = Commons.isEntryPresentInPaginatedTable(driver, tableXPath, idTypeUpdated);
         Assert.assertFalse(entryStillExists, "Entry with text '" + idTypeUpdated + "' should be deleted but still exists.");
