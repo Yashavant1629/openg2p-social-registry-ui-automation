@@ -16,8 +16,6 @@ import java.io.IOException;
 import static base.DriverCreator.driver;
 
 public class LoginPageTest extends BaseLogin {
-
-
     @Test(priority = 1)
     void resetPassword() throws InterruptedException, IOException {
         loginPage();
@@ -38,7 +36,6 @@ public class LoginPageTest extends BaseLogin {
             Commons.click(driver, By.linkText(locators.getProperty("back_to_login")));
         }
     }
-
 
     @Test(priority = 2)
     void loginTest() throws InterruptedException, IOException {
@@ -61,11 +58,7 @@ public class LoginPageTest extends BaseLogin {
         }
     }
 
-
-
-
     private boolean isElementPresent(By locator) {
         return driver.findElements(locator).size() > 0;
     }
-
 }

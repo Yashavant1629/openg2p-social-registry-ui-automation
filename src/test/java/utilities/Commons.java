@@ -43,7 +43,6 @@ public class Commons {
     }
 
     public static WebElement enter(WebDriver driver, By by, String value) {
-//        logger.info("Entering " + by +value);
         try {
             (new WebDriverWait(driver, Duration.ofSeconds(10))).until(ExpectedConditions.visibilityOfElementLocated(by));
             driver.findElement(by).clear();

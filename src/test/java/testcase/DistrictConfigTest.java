@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.time.Duration;
 
 public class DistrictConfigTest extends BaseLogin {
-
     @Test(priority = 1)
     void districtConfigCreation() throws IOException, InterruptedException {
         login();
