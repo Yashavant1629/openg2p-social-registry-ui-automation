@@ -1,3 +1,8 @@
 "Category","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+<<<<<<< HEAD
 "Product defects","2","0","0","0","0"
 "Test defects","0","2","0","0","0"
+=======
+"Product defects","1","0","0","0","0"
+"Test defects","0","1","0","0","0"
+>>>>>>> 63430c99e8de56b68e4edaf9004906849271f851

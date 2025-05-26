@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"total":1,"items":[{"uid":"2e2c7171430fa3ed67f413421cbf10ce","name":"Social Registry Sanity Test Suite","statistic":{"failed":2,"broken":2,"skipped":4,"passed":24,"unknown":0,"total":32}}]}
+=======
+{"total":1,"items":[{"uid":"2e2c7171430fa3ed67f413421cbf10ce","name":"Social Registry Sanity Test Suite","statistic":{"failed":1,"broken":1,"skipped":0,"passed":30,"unknown":0,"total":32}}]}
+>>>>>>> 63430c99e8de56b68e4edaf9004906849271f851
