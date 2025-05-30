@@ -1,1 +1,0 @@
-{"uuid":"6a415aa6-1e86-47e4-a4c4-4dfe4dfc0c5a","name":"testcase.RelationshipTest","children":["18faffba-dc09-4443-8096-29430cae66e1"],"befores":[{"name":"importTestData","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1747679610016,"stop":1747679610021}],"afters":[],"start":1747679163106,"stop":1747679629342}

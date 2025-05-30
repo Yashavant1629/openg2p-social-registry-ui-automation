@@ -1,40 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-launch_status_failed 2
-launch_status_broken 2
-=======
-launch_status_failed 3
-launch_status_broken 0
->>>>>>> parent of 9c2d51d (changes)
-launch_status_passed 24
-launch_status_skipped 0
+launch_status_failed 0
+launch_status_broken 5
+launch_status_passed 17
+launch_status_skipped 15
 launch_status_unknown 0
-<<<<<<< HEAD
-launch_time_duration 479665
+launch_time_duration 318398
 launch_time_min_duration 0
-launch_time_max_duration 22800
-launch_time_sum_duration 394775
-launch_problems_product_defects 2
-launch_problems_test_defects 2
-=======
-launch_status_failed 1
-launch_status_broken 1
-launch_status_passed 30
-launch_status_skipped 0
-launch_status_unknown 0
-launch_time_duration 747405
-launch_time_min_duration 13859
-launch_time_max_duration 44266
-launch_time_sum_duration 595871
-launch_problems_product_defects 1
-launch_problems_test_defects 1
->>>>>>> 63430c99e8de56b68e4edaf9004906849271f851
-=======
-launch_time_duration 460978
-launch_time_min_duration 11395
-launch_time_max_duration 23104
-launch_time_sum_duration 379955
-launch_problems_product_defects 3
->>>>>>> parent of 9c2d51d (changes)
+launch_time_max_duration 28878
+launch_time_sum_duration 273259
+launch_problems_test_defects 5
 launch_retries_retries 0
-launch_retries_run 27
+launch_retries_run 37
