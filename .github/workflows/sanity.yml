@@ -58,7 +58,7 @@ jobs:
         run: mvn clean test
 
       - name: List Allure results
-        run: ls -laR target/allure-results
+        run: ls -laR build/allure-results
 
       - name: Install Allure CLI
         run: |
