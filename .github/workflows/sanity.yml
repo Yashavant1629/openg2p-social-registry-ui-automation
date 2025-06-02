@@ -64,13 +64,7 @@ jobs:
       - name: Run Sanity tests
         run: mvn clean test
 
-      - name: Slack Notification on success
-        if: ${{ success() }}
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          payload: '{"text": "*Workflow ran successfully.*\\nActor: ${{ github.actor }}\\nCommit ID: ${{ github.sha }}"}'
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
+
 
       # - name: Install Allure
       #   run: |
