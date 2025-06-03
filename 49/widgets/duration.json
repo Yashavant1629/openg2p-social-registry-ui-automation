@@ -1,0 +1,1 @@
+[{"uid":"60fa5da3d68d6f30","name":"loginTest","time":{"start":1748946863257,"stop":1748946878486,"duration":15229},"status":"passed","severity":"normal"},{"uid":"3bce22abb2a5bc13","name":"resetPassword","time":{"start":1748946830757,"stop":1748946860665,"duration":29908},"status":"passed","severity":"normal"}]
