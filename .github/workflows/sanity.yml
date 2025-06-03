@@ -34,11 +34,13 @@ jobs:
       - name: Decode and install WireGuard config
         run: |
           echo "${{ secrets.WG_CONF_BASE64 }}" | base64 --decode > /tmp/openg2p-e2e.conf
+          sudo mkdir -p /etc/wireguard
           sudo mv /tmp/openg2p-e2e.conf /etc/wireguard/openg2p-e2e.conf
           sudo chmod 600 /etc/wireguard/openg2p-e2e.conf
           sudo apt-get update
           sudo apt-get install -y wireguard
           sudo systemctl start wg-quick@openg2p-e2e.service
+      
       
 
       - name: Chrome setup
