@@ -55,7 +55,7 @@ jobs:
         run: mvn clean install -DskipTests=true
 
       - name: Run Sanity tests
-        run: mvn clean test
+        run: mvn clean test -Dallure.results.directory=target/allure-results
 
 
 #      - name: Install Allure CLI
@@ -102,7 +102,7 @@ jobs:
         with:
             gh_pages: gh-pages
             allure_history: allure-history
-            allure_results: build/allure-results
+            allure_results: target/allure-results
 
       - name: Publish test report
         uses: peaceiris/actions-gh-pages@v3
