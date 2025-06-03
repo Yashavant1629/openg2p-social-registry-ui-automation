@@ -12,8 +12,8 @@
 <!--            <class name="testcase.GenderTypeTest"/>-->
 <!--            <class name="testcase.GroupMembershipKindTest"/>-->
 <!--            <class name="testcase.GroupTypeTest"/>-->
-<!--            <class name="testcase.IdTypeTest"/>-->
-<!--            <class name="testcase.RegionTest"/>-->
+            <class name="testcase.IdTypeTest"/>
+            <class name="testcase.RegionTest"/>
 <!--            <class name="testcase.RegistrantTagsTest"/>-->
 <!--            <class name="testcase.RelationshipTest"/>-->
 <!--            <class name="testcase.DistrictConfigTest"/>-->
