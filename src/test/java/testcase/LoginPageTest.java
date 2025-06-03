@@ -5,6 +5,8 @@ import base.DriverCreator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.Commons;
@@ -12,6 +14,7 @@ import utilities.TestData;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 import static base.DriverCreator.driver;
 
@@ -43,6 +46,7 @@ public class LoginPageTest extends BaseLogin {
     @Test(priority = 2)
     void loginTest() throws InterruptedException, IOException {
         loginPage();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         for (String email : testData.getEmail()) {
             Commons.enter(driver, By.id(locators.getProperty("username_field")), email);
             Commons.enter(driver, By.id(locators.getProperty("password_field")), testData.getPassword());
@@ -54,7 +58,8 @@ public class LoginPageTest extends BaseLogin {
                 Commons.click(driver, By.xpath(locators.getProperty("logout_dropdown")));
                 Commons.click(driver,By.xpath(locators.getProperty("logout")));
             } else {
-                WebElement errorElement = driver.findElement(By.xpath(locators.getProperty("login_error_message")));
+                WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath(locators.getProperty("login_error_message"))));
                 String errorMessage = errorElement.getText();
                 Assert.assertEquals(errorMessage, "Login failed due to Invalid credentials !", "Error message mismatch for invalid credentials.");
             }
